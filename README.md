@@ -1,5 +1,5 @@
 ## kotlin 协程执行过程java代码化，让我们来了解其中的奥秘
-ps:写文章不是强项，有什么问题看代码事例~~
+ps:写文章不是强项，有什么问题看[代码事例](https://github.com/genius158/CoroutinesTest)~~
 
 ### 开始
 ```
@@ -14,7 +14,7 @@ GlobalScope.launch(Dispatchers.Main) {
     Log.e("launch withContext", "value  " + value + "    " + Thread.currentThread())
  
 ```
-以上是一段最常用的标准代码样例，编译后这整段代码都会提到，kotlin自动生成的类里面,类似[SuspendLambdaMain](./app/src/main/java/com/yan/ktextest/SuspendLambdaMain.java)
+以上是一段最常用的标准代码样例，编译后这整段代码都会提到，kotlin自动生成的类里面,类似[SuspendLambdaMain](https://github.com/genius158/CoroutinesTest/blob/master/app/src/main/java/com/yan/ktextest/SuspendLambdaMain.java)
 
 ```
 class SuspendLambdaMain extends SuspendLambda {
@@ -60,7 +60,7 @@ class SuspendLambdaMain extends SuspendLambda {
 2处，TestContinuation的作用就是把context（可以理解为线程切换帮助类）和对应的代码执行类结合起来，能够实现逻辑跑在指定的线程
 <br/>
 <br/>
-接下来我们看3处对应生成的类[SuspendLambdaAsync](./app/src/main/java/com/yan/ktextest/SuspendLambdaAsync.java)
+接下来我们看3处对应生成的类[SuspendLambdaAsync](https://github.com/genius158/CoroutinesTest/blob/master/app/src/main/java/com/yan/ktextest/SuspendLambdaAsync.java)
 
 ```
 class SuspendLambdaAsync extends SuspendLambda {
@@ -151,7 +151,7 @@ public abstract class TestContinuationImp extends TestContinuation<Object> {
 7.判断执行需不需要挂起，挂起直接return
 <br/>
 <br/>
-接下来，我们看看线程切换实现类的模拟[TestDispatchers](./app/src/main/java/com/yan/ktextest/TestDispatchers.java)
+接下来，我们看看线程切换实现类的模拟[TestDispatchers](https://github.com/genius158/CoroutinesTest/blob/master/app/src/main/java/com/yan/ktextest/TestDispatchers.java)
 <br/>重点看一下IO切换实现
 ```
 static class IO extends TestDispatcher {
@@ -254,4 +254,6 @@ rxjava则是纯代码形式，不存在什么黑魔法，和大多数java库一�
 
 链式写法，链的太深可能会照成crash不好找，但是
 对于它所带来的优势比，这完全可以接受，不然rx相关的库为啥这么多呢。
+
+
 
