@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         SuspendLambdaMain(TestDispatchers.MAIN).intercepted().resumeWith(null)
 
-        GlobalScope.launch(Dispatchers.Default) {
+        GlobalScope.launch(Dispatchers.Main) {
             Log.e("launch withContext ", " 1111111 " + Thread.currentThread())
             val intValue = async(context = Dispatchers.IO) {
                 delay(3000)
