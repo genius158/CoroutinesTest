@@ -111,7 +111,7 @@ public class TestDispatchers {
                         delayQueue.remove(runnableTime);
                     }
                 }
-                //虽然存在阻塞，但是这始终是一个死循环
+                /* 一个死循环，任务为空的时候，仍然存在间隔1秒的运行 */
                 LockSupport.parkNanos(this, processNextEvent());
             }
         }

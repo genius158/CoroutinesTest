@@ -206,7 +206,7 @@ static class DefaultExecutor implements Runnable {
                     delayQueue.remove(runnableTime);
                 }
             }
-            //虽然存在阻塞，但是这始终是一个死循环
+            /* 一个死循环，任务为空的时候，仍然存在间隔1秒的运行 */
             LockSupport.parkNanos(this, processNextEvent());
         }
     }
@@ -235,7 +235,7 @@ static class RunnableTime implements Runnable {
 延时执行就更没什么秘密了，内部维护类似handle的messageQueue的那套东西，当然还有任务添加，执行时序调整等内容我没有去写，
 因为这部分本来就可以看到源码，就不做过多解释了
 <br/>
-9处，是看到目前比较不理解的地方，这是个死循环，协程内部就是个死循环，且这个实现又不小messageQueue，在没有任务的时候，
+9处，是看到目前比较不理解的地方，这是个死循环，协程内部就是个死循环，且这个实现又不像messageQueue，在没有任务的时候，
 这个循环仍然以一定时间间隔在跑，打上断点就可以看到。有谁了解，可以提点一下哇~~
 
 ### coroutines vs rxjava
