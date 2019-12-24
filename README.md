@@ -144,7 +144,7 @@ public abstract class TestContinuationImp extends TestContinuation<Object> {
 }
 
 ```
-5处completion，也就是那个调用其自己的对象，当自己执行完，completion会继续执行，事例只有成功的情况，当然还有异常和取消
+5处completion，也就是那个调用自己的对象，当自己执行完，completion会继续执行，事例只有成功的情况，当然还有异常和取消
 <br/>
 6处线程执行和切换类的包装
 <br/>
